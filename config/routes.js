@@ -5,6 +5,11 @@ const users = require('../app/users')
 const monitoring = require('../app/monitoring')
 
 module.exports = (app, passport, db) => {
+
+	//unsecure
+	app.get('/', (req, res) => res.send('Hello World!'))
+
+	//logins
 	app.post('/api/login', passport.authenticate('local'), users.login)
 	app.get('/api/logout', users.logout)
 	app.get('/api/ping', requiresLogin, users.ping)
@@ -35,4 +40,3 @@ module.exports = (app, passport, db) => {
 		res.status(404).render('404', payload)
 	})
 }
-

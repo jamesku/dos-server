@@ -1,12 +1,12 @@
 module.exports = {
 	db: {
-		user: '',
-		password: '',
-		database: '',
+		user: 'james',
+		password: 'james',
+		database: 'mw',
 		host: 'localhost',
 		port: 5432,
 		max: 50,
 		idleTimeoutMillis: 30000
 	},
-	session_secret: ''
+	session_secret: 'aaaaa'
 }

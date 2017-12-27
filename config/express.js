@@ -48,6 +48,7 @@ module.exports = (app, passport, pool) => {
 		}),
 		secret: config.session_secret,
 		resave: false,
+		saveUninitialized: true,
 		cookie: { maxAge: 14 * 24 * 60 * 60 * 1000 }
 	}))
 

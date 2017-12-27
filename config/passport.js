@@ -3,8 +3,8 @@ const winston = require('winston')
 const LocalStrategy = require('passport-local').Strategy
 
 module.exports = (passport, db) => {
-	passport.use(new LocalStrategy((username, password, cb) => {
-		db.query('SELECT id, username, password, type FROM users WHERE username=$1', [username], (err, result) => {
+	passport.use(new LocalStrategy((email, password, cb) => {
+		db.query('SELECT id, email, password, type FROM users WHERE email=$1', [username], (err, result) => {
 			if(err) {
 				winston.error('Error when selecting user on login', err)
 				return cb(err)
@@ -30,7 +30,7 @@ module.exports = (passport, db) => {
 	})
 
 	passport.deserializeUser((id, cb) => {
-		db.query('SELECT id, username, type FROM users WHERE id = $1', [parseInt(id, 10)], (err, results) => {
+		db.query('SELECT id, password, type FROM users WHERE id = $1', [parseInt(id, 10)], (err, results) => {
 			if(err) {
 				winston.error('Error when selecting user on session deserialize', err)
 				return cb(err)
